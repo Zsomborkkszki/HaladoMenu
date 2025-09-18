@@ -13,6 +13,7 @@ namespace HaladoMenu
             string nev = "";
             int szulev = 0;
             bool ffi = true;
+            double magassag = 1.7803;
            int aktualisPont = 0;
             do
             {
@@ -47,18 +48,14 @@ namespace HaladoMenu
                 switch (aktualisPont)
                 {
                     case 0: //Adatbekérés
-                        Console.Clear();
-                        Console.WriteLine("Adja meg a nevét:");
-                        nev = Console.ReadLine();
-                        Console.WriteLine("Adja meg születési dátumát:");
-                        szulev = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Adja meg a nemét (f/n):");
-                        ffi = Console.ReadLine() == "f";
-                        Console.WriteLine("Adatait rögzítettük. Enterrel tovább...");
+                        InputData(out nev, out szulev, out ffi, out magassag);
                         break;
                     case 1: //adatkiírás
+                        Console.Clear();
+                        Console.WriteLine("***Adat Kiírás***");
                         Console.WriteLine($"Neve {nev}");
                         Console.WriteLine($"Születési éve: {szulev}");
+                        Console.WriteLine($"Magassága {magassag:F2}m");
                         if (ffi)
                         {
                             Console.WriteLine("Neme: Férfi");
@@ -84,6 +81,22 @@ namespace HaladoMenu
             }
             while (aktualisPont != 2);
         }
+
+        private static void InputData(out string nev, out int szulev, out bool ffi, out double magassag)
+        {
+            Console.Clear();
+            Console.WriteLine("***Adat bekérés***");
+            Console.WriteLine("Adja meg a nevét:");
+            nev = Console.ReadLine();
+            Console.WriteLine("Adja meg születési dátumát:");
+            szulev = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Adja meg a nemét (f/n):");
+            ffi = Console.ReadLine() == "f";
+            Console.WriteLine("Adja meg magasságát:");
+            magassag = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Adatait rögzítettük. Enterrel tovább...");
+        }
+
         static void ShowMenu(int cPoint)
         {
             Console.Clear();
